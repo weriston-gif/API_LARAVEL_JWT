@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return response()->json([
-        'api_name' => 'Laravel API + JWT',
-        'api_version' => '1.0.0'
+        'api_name' => 'Laravel API + JWT.',
+        'api_version' => '1.0.1'
     ]);
 });
 
