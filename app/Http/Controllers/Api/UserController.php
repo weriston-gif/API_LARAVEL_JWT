@@ -55,10 +55,31 @@ class UserController extends Controller
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'User not found'], 404);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to retrieve user'], 500);
+            return response()->json(['error' => true, 'message' => $e->getMessage()], $e->getCode());
         }
     }
 
+    public function me()
+    {
+        try {
+            return response()->json(auth()->user(), 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], $e->getCode());
+        }
+    }
+
+    public function logout()
+    {
+        try {
+            auth()->logout(true);
+   
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], $e->getCode());
+        }
+    }
+
+
+    
     public function show(string $id)
     {
         try {
